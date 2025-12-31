@@ -1,0 +1,1 @@
+import{s as c,j as r,t as s}from"./YuA7MKX-N8BBDZOAxa77.js";function e(n){const o=c[n.icon];if(!o)throw new Error(`Invalid icon name ${n.icon}`);const{icon:i,...t}=n;return r.jsx(s.Icon,{...t,path:o})}export{e as I};

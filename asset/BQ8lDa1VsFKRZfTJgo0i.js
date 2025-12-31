@@ -1,0 +1,1 @@
+function t(s){const l=/<(a?):(\w+):(\d+)>/g,a=[];let i=0,e;for(;(e=l.exec(s))!==null;)e.index>i&&a.push(s.slice(i,e.index)),a.push({type:"custom",animated:e[1]==="a",name:e[2],id:e[3]}),i=e.index+e[0].length;return i<s.length&&a.push(s.slice(i)),a}export{t as p};

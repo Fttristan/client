@@ -1,0 +1,4 @@
+import{q as p,o as g,j as t,h as m,L as v,C as c}from"./YuA7MKX-N8BBDZOAxa77.js";import{u as x}from"./LiJY25P-VFx-37gB8DfS.js";import{C as y}from"./DHUNfCjJXx7e65J0lFqA.js";const C=p.div`
+	display: flex;
+	flex: 1;
+`;function f(){const e=x();if(!e.activeGuild||!e.activeChannel)return t.jsx(C,{});const o=e.activeGuild.id,i=e.channels.getVisibleChannelsForGuild(o),d=s=>{e.channels.toggleCategoryCollapse(o,s)},h=({index:s,key:a,style:r})=>{const n=i[s],u=e.activeChannelId===n.id,l=n.type===c.GuildCategory;return t.jsx("div",{style:r,children:t.jsx(y,{isCategory:l,active:u,channel:n,isCollapsed:e.channels.isCategoryCollapsed(o,n.id),onToggleCollapse:l?()=>d(n.id):void 0},a)})};return t.jsx(C,{children:t.jsx(m,{children:({width:s,height:a})=>t.jsx(v,{height:a,overscanRowCount:2,rowCount:i.length,rowHeight:({index:r})=>i[r].type===c.GuildCategory?44:33,rowRenderer:h,width:s})})})}const w=g(f);export{w as C};

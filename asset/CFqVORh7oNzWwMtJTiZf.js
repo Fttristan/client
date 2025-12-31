@@ -1,0 +1,1 @@
+import{j as o}from"./YuA7MKX-N8BBDZOAxa77.js";import{C as r}from"./aS8qsvb2wLNOaGAnCzpJ.js";import{T as t}from"./BiMi6SayjwsQlYyf22kP.js";function s(){return o.jsx(r,{children:o.jsx(t,{children:"NotFound"})})}export{s as N};

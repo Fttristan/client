@@ -1,0 +1,1 @@
+import{R as t,j as e}from"./YuA7MKX-N8BBDZOAxa77.js";import{u as r}from"./LiJY25P-VFx-37gB8DfS.js";function a(){const o=r();return t.useEffect(()=>{o.logout()},[]),e.jsx("div",{children:"LogoutPage"})}export{a as L};
