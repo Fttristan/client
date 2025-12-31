@@ -23,6 +23,8 @@ jobs:
       with:
         version: 8
         run_install: false
+    - name: Update PNPM
+      run: pnpm i -g pnpm
 
     - name: Get pnpm store directory
       id: pnpm-cache
