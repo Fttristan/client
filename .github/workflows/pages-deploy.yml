@@ -29,7 +29,6 @@ jobs:
       run: pnpm install --no-frozen-lockfile
 
     - name: Build
-      working-directory: .
       run: pnpm build
 
     - name: Debug build output
@@ -43,8 +42,10 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+        publish_dir: dist
         publish_branch: gh-pages
         force_orphan: true
+        exclude_assets: ''   # ← FIXES cp: no such file or directory
+
 
 
