@@ -50,19 +50,8 @@ jobs:
       run: pnpm build
 
     # 7. Deploy to gh-pages
-    - name: Deploy
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-
-        # Ensure build directory exists
-        mkdir -p build
-
-        # Add build output to gh-pages worktree
-        git --work-tree=build --git-dir=.git add --all
-
-        # Commit if needed
-        git --work-tree=build --git-dir=.git commit -m "Automatic Deploy" || echo "No changes to commit"
-
-        # Push to gh-pages
-        git --work-tree=build --git-dir=.git push origin HEAD:gh-pages --force
+    - name: Deploy to GitHub Pages 
+      uses: peaceiris/actions-gh-pages@v3 
+      with: 
+        github_token: ${{ secrets.GITHUB_TOKEN }} 
+        publish_dir: ./build
