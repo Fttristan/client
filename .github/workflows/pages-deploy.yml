@@ -36,6 +36,15 @@ jobs:
     - name: Build
       run: pnpm build
 
+    - name: Debug build output
+      run: |
+        echo "Listing project root:"
+        ls -R .
+        echo "Listing ./dist:"
+        ls -R dist || echo "dist does not exist"
+
+
+
     # 6. Deploy to gh-pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
