@@ -11,29 +11,26 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 19
+        node-version: 20
 
-    - uses: pnpm/action-setup@v2
-      name: Install pnpm
-      id: pnpm-install
+    - name: Install pnpm 9
+      uses: pnpm/action-setup@v2
       with:
-        version: 8
+        version: 9
         run_install: false
-    - name: Update PNPM
-      run: pnpm i -g pnpm
 
     - name: Get pnpm store directory
       id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-    - uses: actions/cache@v3
-      name: Setup pnpm cache
+    - name: Setup pnpm cache
+      uses: actions/cache@v3
       with:
         path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
         key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -42,16 +39,16 @@ jobs:
 
     - name: Install dependencies
       run: pnpm install
-      
+
     - name: Build
       run: pnpm build
-    
-      
-    - name: Deploy
+
+    - name: Deploy to gh-pages
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git --work-tree build add --all
-        git commit -m "Automatic Deploy"
-        git push origin HEAD:gh-pages --force
-      shell: bash
+
+        git --work-tree=build --git-dir=.git add --all
+        git --work-tree=build --git-dir=.git commit -m "Automatic Deploy" || echo "No changes to commit"
+        git --work-tree=build --git-dir=.git push origin HEAD:gh-pages --force
+
