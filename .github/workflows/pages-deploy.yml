@@ -43,13 +43,19 @@ jobs:
     - name: Build
       run: pnpm build
 
-    - name: Deploy to gh-pages
+    - name: Deploy
       working-directory: ${{ github.workspace }}
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
+        git --git-dir=.git --work-tree=build add --all
+        git --git-dir=.git --work-tree=build commit -m "Automatic Deploy" || echo "No changes to commit"
+        git --git-dir=.git --work-tree=build push origin HEAD:gh-pages --force
 
-        git --work-tree=build --git-dir=.git add --all
-        git --work-tree=build --git-dir=.git commit -m "Automatic Deploy" || echo "No changes to commit"
-        git --work-tree=build --git-dir=.git push origin HEAD:gh-pages --force
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+
 
