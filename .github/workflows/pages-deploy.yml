@@ -9,30 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Checkout full repo (required for gh-pages push)
     - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
-    # 2. Install Node
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 20
 
-    # 3. Install pnpm 9
     - name: Install pnpm
       uses: pnpm/action-setup@v2
       with:
         version: 9
         run_install: false
 
-    # 4. Install dependencies (no cache)
     - name: Install dependencies
       run: pnpm install --no-frozen-lockfile
 
-    # 5. Build project
     - name: Build
       run: pnpm build
 
@@ -43,13 +38,12 @@ jobs:
         echo "Listing ./dist:"
         ls -R dist || echo "dist does not exist"
 
-
-
-    # 6. Deploy to gh-pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: dist
+        publish_branch: gh-pages
         force_orphan: true
+
 
